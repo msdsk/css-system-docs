@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "@thisisdeploy/css-system": ">=0.0.1",
-    "klaw-sync": "^6.0.0",
+    "@thisisdeploy/css-system": "0.0.2",
     "node-sass": "^4.13.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.0"

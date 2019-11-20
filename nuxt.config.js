@@ -1,3 +1,6 @@
+const fileReader = require('./api/cssFileList')
+const fileList = fileReader('node_modules/@thisisdeploy/css-system')
+
 export default {
   mode: 'universal',
   /*
@@ -45,6 +48,9 @@ export default {
   serverMiddleware: [
     '~/api/cssFileList'
   ],
+  generate: {
+    routes: fileList[1]
+  },
   /*
    ** Build configuration
    */
