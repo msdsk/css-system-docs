@@ -1,5 +1,10 @@
-const fileReader = require('./api/cssFileList')
-const fileList = fileReader('node_modules/@thisisdeploy/css-system')
+const fileReader = require('./server_lib/cssFileList')
+const cssCopier = require('./server_lib/cssCopier')
+
+const cssModule = '@thisisdeploy/css-system'
+const fileList = fileReader('node_modules/' + cssModule)
+cssCopier('node_modules/' + cssModule)
+
 
 export default {
   mode: 'universal',
@@ -45,9 +50,6 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
-  serverMiddleware: [
-    '~/api/cssFileList'
-  ],
   generate: {
     routes: fileList[1]
   },
@@ -58,6 +60,18 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+      config.module.rules.push({
+        test: /\.scss-doc$/i,
+        loader: 'raw-loader'
+      })
+    }
+  },
+  env: {
+    fileList: fileList[0],
+    cssModule
   }
 }
