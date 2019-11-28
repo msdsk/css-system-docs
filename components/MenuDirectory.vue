@@ -1,5 +1,5 @@
 <template>
-  <ul class="container">
+  <ul>
     <li v-for="file in directory.files" :key="file">
       <a :href="file">{{formattedFileName(file)}}</a>
     </li>

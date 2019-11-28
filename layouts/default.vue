@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <menu-directory :directory="fileList" />
+    <menu-directory :directory="fileList" class="container" />
     <nuxt class="content" />
   </div>
 </template>

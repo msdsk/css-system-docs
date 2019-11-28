@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "@thisisdeploy/css-system": "0.0.2",
+    "@thisisdeploy/css-system": "0.0.3-a",
     "fs-extra": "^8.1.0",
     "highlight.js": "^9.16.2",
     "node-sass": "^4.13.0",

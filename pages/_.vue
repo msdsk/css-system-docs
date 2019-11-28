@@ -1,16 +1,16 @@
 <template>
   <div>
-    <pre><code v-html="css"></code></pre>
+    <css-section v-for="cssSection in cssSections" :key="cssSection" :section="cssSection" />
   </div>
 </template>
 
 <script>
-import hljs from "highlight.js/lib/highlight";
-import hlcss from "highlight.js/lib/languages/scss";
-
-hljs.registerLanguage("scss", hlcss);
+import CssSection from "~/components/CssSection";
 
 export default {
+  components: {
+    CssSection
+  },
   asyncData(context) {
     return import(
       /* webpackMode: "eager" */
@@ -20,12 +20,12 @@ export default {
     )
       .then(res => {
         return {
-          css: hljs.highlight("scss", res.default).value
+          cssSections: res.default.split("/*")
         };
       })
       .catch(e => {
         console.error(e);
-        return { css: null };
+        return { cssSections: null };
       });
   }
 };
