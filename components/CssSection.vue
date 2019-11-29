@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-html="text"></div>
-    <div v-html="highlightHtml(code)"></div>
+    <showcase v-if="code" :code="code" />
     <pre><code v-html="highlightCss(css)"></code></pre>
   </div>
 </template>
@@ -9,12 +9,18 @@
 <script>
 import hljs from "highlight.js/lib/highlight";
 import hlcss from "highlight.js/lib/languages/scss";
-import hlhtml from "highlight.js/lib/languages/xml";
+import MarkdownIt from "markdown-it";
+
+import Showcase from "~/components/Showcase";
 
 hljs.registerLanguage("scss", hlcss);
-hljs.registerLanguage("html", hlcss);
+
+const md = new MarkdownIt();
 
 export default {
+  components: {
+    Showcase
+  },
   props: {
     section: { type: String }
   },
@@ -29,25 +35,28 @@ export default {
     highlightCss(css) {
       return css ? hljs.highlight("scss", css).value : "";
     },
-    highlightHtml(html) {
-      return html ? hljs.highlight("html", html).value : "";
-    },
     parseSection(section) {
-      console.log(section);
-      const data = section.split("*/"),
-        comment = data[0],
-        css = data[1];
+      const data = section.split("*/");
+      if (data.length === 1) {
+        this.text = "";
+        this.code = "";
+        this.css = data[0];
+      } else {
+        const comment = data[0].split("```example"),
+          text = comment[0],
+          html = (comment[1] || "").replace("```", ""),
+          css = data[1];
 
-      console.log("data", data);
-
-      this.css = css;
-      // console.log(comment);
+        this.text = md.render(text);
+        this.code = html;
+        this.css = css;
+      }
     }
   },
   watch: {
-    // section: value => {
-    //   this.parseSection(value);
-    // }
+    section: value => {
+      this.parseSection(value);
+    }
   },
   mounted() {
     this.parseSection(this.section);

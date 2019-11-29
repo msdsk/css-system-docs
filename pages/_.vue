@@ -20,7 +20,9 @@ export default {
     )
       .then(res => {
         return {
-          cssSections: res.default.split("/*")
+          cssSections: res.default
+            .split("/*")
+            .filter(item => !/^\s*$/.exec(item))
         };
       })
       .catch(e => {

@@ -36,3 +36,4 @@ export default {
 
 <style src="highlight.js/styles/github.css">
 </style>
+<style lang="scss" src="~/assets/css/index.scss"></style>
