@@ -48,6 +48,7 @@ export default {
   position: relative;
   overflow: hidden;
   margin-bottom: 0.5em;
+  min-height: 10em;
 
   &__btn {
     margin-left: auto;
