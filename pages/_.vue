@@ -14,9 +14,10 @@ export default {
   asyncData(context) {
     return import(
       /* webpackMode: "eager" */
-      `../dev/css_module_copy/${
-        process.env.cssModule
-      }${context.route.path.replace(/\/([^\/]*)$/, "/_$1")}.scss-doc`
+      `../${process.env.devFolder}${context.route.path.replace(
+        /\/([^\/]*)$/,
+        "/_$1"
+      )}.scss-doc`
     )
       .then(res => {
         return {

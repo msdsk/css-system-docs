@@ -7,7 +7,7 @@
 
 <script>
 import MenuDirectory from "~/components/MenuDirectory";
-import "@thisisdeploy/css-system/index.scss";
+const css = require(`../${process.env.cssModule}`);
 
 export default {
   components: {

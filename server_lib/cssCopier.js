@@ -1,8 +1,7 @@
 const fs = require("fs-extra")
 const RecursiveRename = require('recursive-rename')
 
-module.exports = async (modulePath) => {
-  const dest = modulePath.replace('node_modules', 'dev/css_module_copy')
+module.exports = async (modulePath, dest) => {
   fs.removeSync(dest)
   fs.copySync(modulePath, dest)
   const recursiveRename = new RecursiveRename({

@@ -1,9 +1,21 @@
 const fileReader = require('./server_lib/cssFileList')
 const cssCopier = require('./server_lib/cssCopier')
 
-const cssModule = '@thisisdeploy/css-system'
-const fileList = fileReader('node_modules/' + cssModule)
-cssCopier('node_modules/' + cssModule)
+let cssModule = '',
+  fileList,
+  devFolder = 'dev/css_module_copy'
+
+try {
+  const override = require('./local_override.js')
+  cssModule = override.cssModule
+  fileList = fileReader(cssModule)
+} catch (e) {
+  console.log(e)
+  cssModule = 'node_modules/@thisisdeploy/css-system'
+  fileList = fileReader(cssModule)
+}
+cssCopier(cssModule, devFolder)
+
 
 
 export default {
@@ -72,6 +84,7 @@ export default {
   },
   env: {
     fileList: fileList[0],
-    cssModule
+    cssModule,
+    devFolder
   }
 }

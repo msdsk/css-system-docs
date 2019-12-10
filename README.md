@@ -19,4 +19,10 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+For easier local development that allows usage of local `.scss` files instead of an npm module, create `local_override.js` file at the root of the project and specify in it local path as such:
+
+```js
+module.exports = {
+  cssModule: '../relative/path/to/css-system'
+}
+```

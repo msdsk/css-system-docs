@@ -92,3 +92,6 @@ sw.*
 
 # copied CSS module
 dev/
+
+# override to use local CSS module for dev
+local_override.js
