@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-html="text"></div>
+    <div v-html="text" class="comment"></div>
     <showcase v-if="code" :code="code" />
     <pre><code v-html="highlightCss(css)"></code></pre>
   </div>
