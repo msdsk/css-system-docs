@@ -2,7 +2,7 @@
   <div>
     <div v-html="text" class="comment"></div>
     <showcase v-if="code" :code="code" />
-    <pre><code v-html="highlightCss(css)"></code></pre>
+    <pre class="margin-top margin-bottom"><code v-html="highlightCss(css)"></code></pre>
   </div>
 </template>
 
@@ -16,6 +16,11 @@ import Showcase from "~/components/Showcase";
 hljs.registerLanguage("scss", hlcss);
 
 const md = new MarkdownIt();
+
+function stripWhitespace(string) {
+  let strippedString = string.replace(/(^\s+)|(\s+$)/g, "");
+  return strippedString;
+}
 
 export default {
   components: {
@@ -43,9 +48,9 @@ export default {
         this.css = data[0];
       } else {
         const comment = data[0].split("```example"),
-          text = comment[0],
-          html = (comment[1] || "").replace("```", ""),
-          css = data[1];
+          text = stripWhitespace(comment[0]),
+          html = stripWhitespace((comment[1] || "").replace("```", "")),
+          css = stripWhitespace(data[1]);
 
         this.text = md.render(text);
         this.code = html;
@@ -64,5 +69,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.comment {
+  & > :not(:first-child) {
+    margin-top: 1em;
+  }
+}
 </style>

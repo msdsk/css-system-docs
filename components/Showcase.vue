@@ -4,11 +4,8 @@
       <pre class="showcase__code" :class="{'showcase__code--visible':codeVisible}"><code v-html="format(html)"></code></pre>
       <div v-html="html" class="showcase__rendered"></div>
     </div>
-    <div class="toolstrip toolstrip--no-margin flex--end">
-      <button
-        class="btn showcase__btn"
-        @click="codeVisible=!codeVisible"
-      >{{codeVisible?'Hide code':'Show code'}}</button>
+    <div class="toolstrip toolstrip--no-margin flex--right showcase__btn">
+      <button class="btn" @click="codeVisible=!codeVisible">{{codeVisible?'Hide code':'Show code'}}</button>
     </div>
   </div>
 </template>
@@ -51,7 +48,6 @@ export default {
   min-height: 10em;
 
   &__btn {
-    margin-left: auto;
     position: sticky;
     bottom: 0;
   }
