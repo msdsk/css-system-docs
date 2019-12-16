@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-for="file in directory.files" :key="file">
+  <ul class="menu-directory">
+    <li v-for="file in directory.files" :key="file" class="menu-directory__item">
       <a :href="file">{{formattedFileName(file)}}</a>
     </li>
     <li
@@ -27,5 +27,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.menu-directory {
+  list-style-type: none;
+
+  .menu-directory {
+    margin-left: 1em;
+  }
+}
 </style>
