@@ -50,6 +50,7 @@ export default {
   &__btn {
     position: sticky;
     bottom: 0;
+    z-index: 3;
   }
 
   &__code {
@@ -64,6 +65,7 @@ export default {
     transition: transform 0.5s ease-in;
     font-size: 0.85em;
     padding: 1em;
+    z-index: 2;
 
     &--visible {
       transform: translateX(0%);
