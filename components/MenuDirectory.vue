@@ -1,7 +1,7 @@
 <template>
   <ul class="menu-directory">
     <li v-for="file in directory.files" :key="file" class="menu-directory__item">
-      <a :href="file">{{formattedFileName(file)}}</a>
+      <a class="link-simple" :href="file">{{formattedFileName(file)}}</a>
     </li>
     <li
       v-for="(innerDirectory, innerDirectoryName) in directory.directories"
@@ -17,7 +17,10 @@
 export default {
   name: "menu-directory",
   props: {
-    directory: {}
+    directory: {},
+    level: {
+      default: 0
+    }
   },
   methods: {
     formattedFileName(name) {
