@@ -24,7 +24,10 @@ export default {
   },
   methods: {
     formattedFileName(name) {
-      return name.split("/").slice(-1)[0];
+      return name
+        .split("/")
+        .slice(-1)[0]
+        .replace(/_/g, " ");
     }
   }
 };
