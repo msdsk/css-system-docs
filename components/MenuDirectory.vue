@@ -1,7 +1,7 @@
 <template>
   <ul class="menu-directory">
     <li v-for="file in directory.files" :key="file" class="menu-directory__item">
-      <a class="link-simple" :href="file">{{formattedFileName(file)}}</a>
+      <nuxt-link class="link-simple" :to="file">{{formattedFileName(file)}}</nuxt-link>
     </li>
     <li
       v-for="(innerDirectory, innerDirectoryName) in directory.directories"
