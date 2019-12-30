@@ -29,13 +29,27 @@ export default {
   },
   computed: {
     html() {
-      return this.code ? nunjucks.renderString(this.code) : "";
+      return this.code
+        ? nunjucks.renderString(this.code.replace(/<script>.*<\/script>/, ""))
+        : "";
     }
   },
   methods: {
     format(code) {
       return code ? hljs.highlight("html", code).value : "";
+    },
+    evaluateJs() {
+      const js = /<script>([^]*?)(?=<\/script>)/.exec(this.code)[1];
+      eval(js);
     }
+  },
+  watch: {
+    code() {
+      this.evaluateJs();
+    }
+  },
+  mounted() {
+    this.evaluateJs();
   }
 };
 </script>
