@@ -39,8 +39,9 @@ export default {
       return code ? hljs.highlight("html", code).value : "";
     },
     evaluateJs() {
-      const js = /<script>([^]*?)(?=<\/script>)/.exec(this.code)[1];
-      eval(js);
+      const js = /<script>([^]*?)(?=<\/script>)/.exec(this.code);
+      if (!js || !js[1]) return;
+      eval(js[1]);
     }
   },
   watch: {
