@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 .menu-directory {
   list-style-type: none;
+  margin-left: 0;
 
   .menu-directory {
     margin-left: 1em;
