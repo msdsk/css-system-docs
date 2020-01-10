@@ -3,6 +3,11 @@
     <div class="menu-container">
       <div class="container">
         <nuxt-link class="link-simple h2" to="/">Home</nuxt-link>
+        <ul class="menu-directory">
+          <li class="link-simple menu-directory__item">
+            <nuxt-link to="/naming" class="link-simple">Naming conventions</nuxt-link>
+          </li>
+        </ul>
       </div>
       <menu-directory :directory="fileList" class="container" />
     </div>
