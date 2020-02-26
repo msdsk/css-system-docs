@@ -8,7 +8,7 @@
         target="_blank"
         href="https://github.com/ThisisDeploy/css-system"
       >the files</a> or use it as a package from npm
-      <code>scaffold-css</code>.
+      <code>@thisisdeploy/scaffold-css</code>.
     </p>
   </div>
 </template>
