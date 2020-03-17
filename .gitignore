@@ -90,8 +90,11 @@ sw.*
 # Vim swap files
 *.swp
 
-# copied CSS module
+# Copied CSS module
 dev/
 
-# override to use local CSS module for dev
+# Override to use local CSS module for dev
 local_override.js
+
+# Package lock so modules get updated on deploy
+package-lock.json
