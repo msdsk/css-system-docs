@@ -11,7 +11,7 @@ try {
   fileList = fileReader(cssModule)
 } catch (e) {
   console.log(e)
-  cssModule = 'node_modules/@thisisdeploy/css-system'
+  cssModule = 'node_modules/@thisisdeploy/scaffold-css'
   fileList = fileReader(cssModule)
 }
 cssCopier(cssModule, devFolder)
