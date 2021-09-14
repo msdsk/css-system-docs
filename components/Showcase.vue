@@ -1,58 +1,63 @@
 <template>
   <div>
     <div class="showcase margin-top margin-bottom">
-      <pre class="showcase__code" :class="{'showcase__code--visible':codeVisible}"><code v-html="format(html)"></code></pre>
+      <pre
+        class="showcase__code"
+        :class="{ 'showcase__code--visible': codeVisible }"
+      ><code v-html="format(html)"></code></pre>
       <div v-html="html" class="showcase__rendered"></div>
     </div>
     <div class="toolstrip toolstrip--no-margin flex--right showcase__btn">
-      <button class="btn" @click="codeVisible=!codeVisible">{{codeVisible?'Hide code':'Show code'}}</button>
+      <button class="btn" @click="codeVisible = !codeVisible">
+        {{ codeVisible ? "Hide code" : "Show code" }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import hljs from "highlight.js/lib/highlight";
-import hlhtml from "highlight.js/lib/languages/xml";
-import nunjucks from "nunjucks";
+import hljs from "highlight.js/lib/core"
+import hlhtml from "highlight.js/lib/languages/xml"
+import nunjucks from "nunjucks"
 
-nunjucks.configure({ autoescape: true });
-hljs.registerLanguage("html", hlhtml);
+nunjucks.configure({ autoescape: true })
+hljs.registerLanguage("html", hlhtml)
 
 export default {
   props: {
-    code: String
+    code: String,
   },
   data() {
     return {
-      codeVisible: false
-    };
+      codeVisible: false,
+    }
   },
   computed: {
     html() {
       return this.code
         ? nunjucks.renderString(this.code.replace(/<script>.*<\/script>/, ""))
-        : "";
-    }
+        : ""
+    },
   },
   methods: {
     format(code) {
-      return code ? hljs.highlight("html", code).value : "";
+      return code ? hljs.highlight("html", code).value : ""
     },
     evaluateJs() {
-      const js = /<script>([^]*?)(?=<\/script>)/.exec(this.code);
-      if (!js || !js[1]) return;
-      eval(js[1]);
-    }
+      const js = /<script>([^]*?)(?=<\/script>)/.exec(this.code)
+      if (!js || !js[1]) return
+      eval(js[1])
+    },
   },
   watch: {
     code() {
-      this.evaluateJs();
-    }
+      this.evaluateJs()
+    },
   },
   mounted() {
-    this.evaluateJs();
-  }
-};
+    this.evaluateJs()
+  },
+}
 </script>
 
 <style lang="scss">

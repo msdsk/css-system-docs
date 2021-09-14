@@ -2,71 +2,73 @@
   <div>
     <div v-html="text" class="comment"></div>
     <showcase v-if="code" :code="code" />
-    <pre class="margin-top margin-bottom"><code v-html="highlightCss(css)"></code></pre>
+    <pre
+      class="margin-top margin-bottom"
+    ><code v-html="highlightCss(css)"></code></pre>
   </div>
 </template>
 
 <script>
-import hljs from "highlight.js/lib/highlight";
-import hlcss from "highlight.js/lib/languages/scss";
-import MarkdownIt from "markdown-it";
+import hljs from "highlight.js/lib/core"
+import hlcss from "highlight.js/lib/languages/scss"
+import MarkdownIt from "markdown-it"
 
-import Showcase from "~/components/Showcase";
+import Showcase from "~/components/Showcase"
 
-hljs.registerLanguage("scss", hlcss);
+hljs.registerLanguage("scss", hlcss)
 
-const md = new MarkdownIt();
+const md = new MarkdownIt()
 
 function stripWhitespace(string) {
-  let strippedString = string.replace(/(^\s+)|(\s+$)/g, "");
-  return strippedString;
+  let strippedString = string.replace(/(^\s+)|(\s+$)/g, "")
+  return strippedString
 }
 
 export default {
   components: {
-    Showcase
+    Showcase,
   },
   props: {
-    section: { type: String }
+    section: { type: String },
   },
   data() {
     return {
       text: "",
       code: "",
-      css: ""
-    };
+      css: "",
+    }
   },
   methods: {
     highlightCss(css) {
-      return css ? hljs.highlight("scss", css).value : "";
+      return css ? hljs.highlight("scss", css).value : ""
     },
     parseSection(section) {
-      const data = section.split("*/");
+      const data = section.split("*/")
       if (data.length === 1) {
-        this.text = "";
-        this.code = "";
-        this.css = data[0];
+        this.text = ""
+        this.code = ""
+        this.css = data[0]
       } else {
         const comment = data[0].split("```example"),
           text = stripWhitespace(comment[0]),
           html = stripWhitespace((comment[1] || "").replace("```", "")),
-          css = stripWhitespace(data[1]);
+          css = stripWhitespace(data[1])
 
-        this.text = md.render(text);
-        this.code = html;
-        this.css = css;
+        this.text = md.render(text)
+        this.code = html
+        this.css = css
       }
-    }
+    },
   },
   watch: {
-    section: value => {
-      this.parseSection(value);
-    }
+    section: (value) => {
+      this.parseSection(value)
+    },
   },
   mounted() {
-    this.parseSection(this.section);
-  }
-};
+    this.parseSection(this.section)
+  },
+}
 </script>
 
 <style lang="scss">
