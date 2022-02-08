@@ -1,25 +1,27 @@
-const fileReader = require('./server_lib/cssFileList')
-const cssCopier = require('./server_lib/cssCopier')
+import fileReader from './server_lib/cssFileList'
+import cssCopier from './server_lib/cssCopier'
+import fs from 'fs-extra'
 
-let cssModule = '',
+var cssModule = '',
   fileList,
-  devFolder = 'dev/css_module_copy'
+  cssEntryFile
+let devFolder = 'dev/css_module_copy'
 
 try {
-  const override = require('./local_override.js')
+  const override = fs.readJSONSync('./local_override.json')
   cssModule = override.cssModule
+  cssEntryFile = `@/${cssModule}/index.scss`
   fileList = fileReader(cssModule)
 } catch (e) {
   console.log(e)
   cssModule = 'node_modules/@thisisdeploy/scaffold-css'
+  cssEntryFile = `@thisisdeploy/scaffold-css/index.scss`
   fileList = fileReader(cssModule)
 }
 cssCopier(cssModule, devFolder)
 
-
-
 export default {
-  mode: 'universal',
+  static: true,
   /*
    ** Headers of the page
    */
@@ -42,7 +44,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [cssEntryFile],
   /*
    ** Plugins to load before mounting the App
    */
@@ -54,15 +56,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-  ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
+  modules: [],
   generate: {
     routes: fileList[1]
   },
@@ -83,7 +77,7 @@ export default {
       })
     }
   },
-  env: {
+  publicRuntimeConfig: {
     fileList: fileList[0],
     cssModule,
     devFolder

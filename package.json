@@ -5,25 +5,22 @@
   "author": "Michal Sadowski",
   "private": true,
   "scripts": {
-    "dev": "node --inspect node_modules/.bin/nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "nuxi dev",
+    "build": "nuxi generate",
+    "start": "nuxi preview"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
-    "@thisisdeploy/scaffold-css": "^1.5.5",
+    "@thisisdeploy/scaffold-css": "latest",
+    "axios": "^0.25.0",
     "fs-extra": "^10.0.0",
-    "highlight.js": "^11.2.0",
-    "markdown-it": "^12.2.0",
-    "node-watch": "^0.7.1",
+    "highlight.js": "^11.4.0",
+    "markdown-it": "^12.3.2",
+    "node-watch": "^0.7.3",
     "nunjucks": "^3.2.3",
-    "nuxt": "^2.15.8",
+    "nuxt3": "^3.0.0-27405623.a9ba1ca",
     "raw-loader": "^4.0.2",
     "recursive-rename": "^4.0.0",
-    "sass-loader": "^10.0.0"
-  },
-  "devDependencies": {
-    "node-sass": "^6.0.1"
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0"
   }
 }

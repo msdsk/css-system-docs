@@ -11,21 +11,22 @@
       </div>
       <menu-directory :directory="fileList" class="container" />
     </div>
-    <nuxt class="content" />
+    <div class="content">
+      <slot />
+    </div>
   </div>
 </template>
 
+
 <script>
-import MenuDirectory from "~/components/MenuDirectory";
-const css = require(`../${process.env.cssModule}`);
 
 export default {
-  components: {
-    MenuDirectory
+  setup() {
+    return { config: useRuntimeConfig() }
   },
   data() {
     return {
-      fileList: process.env.fileList
+      fileList: this.config.fileList
     };
   }
 };

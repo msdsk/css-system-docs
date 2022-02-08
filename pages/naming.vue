@@ -3,13 +3,14 @@
     <h1>Naming</h1>
     <p class="comment">
       This system uses baseline
-      <a href="http://getbem.com/naming/">BEM</a> with <code>--</code> (double
-      dash) denoting modifiers to classes and <code>__</code> (double underline)
+      <a href="http://getbem.com/naming/">BEM</a> with
+      <code>--</code> (double
+      dash) denoting modifiers to classes and
+      <code>__</code> (double underline)
       denoting elements in a block. For example:
     </p>
     <pre>
-      <code v-html="highlightedExample">
-      </code>
+      <code v-html="highlightedExample" />
     </pre>
     <p class="comment">
       For
@@ -17,8 +18,7 @@
       possible:
     </p>
     <pre>
-      <code v-html="highlightedExampleCss">
-      </code>
+      <code v-html="highlightedExampleCss" />
     </pre>
   </div>
 </template>

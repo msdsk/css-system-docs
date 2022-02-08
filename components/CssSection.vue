@@ -2,9 +2,7 @@
   <div>
     <div v-html="text" class="comment"></div>
     <showcase v-if="code" :code="code" />
-    <pre
-      class="margin-top margin-bottom"
-    ><code v-html="highlightCss(css)"></code></pre>
+    <pre class="margin-top margin-bottom"><code v-html="highlightCss(css)"></code></pre>
   </div>
 </template>
 
@@ -13,7 +11,6 @@ import hljs from "highlight.js/lib/core"
 import hlcss from "highlight.js/lib/languages/scss"
 import MarkdownIt from "markdown-it"
 
-import Showcase from "~/components/Showcase"
 
 hljs.registerLanguage("scss", hlcss)
 
@@ -25,9 +22,6 @@ function stripWhitespace(string) {
 }
 
 export default {
-  components: {
-    Showcase,
-  },
   props: {
     section: { type: String },
   },
