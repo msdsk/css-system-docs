@@ -2,14 +2,14 @@
   <div class="main-container">
     <div class="menu-container">
       <div class="container">
-        <nuxt-link class="link-simple h2" to="/">Home</nuxt-link>
-        <ul class="menu-directory">
+        <nuxt-link class=" h2" to="/">Home</nuxt-link>
+        <ul class="list-simple">
           <li class="link-simple menu-directory__item">
             <nuxt-link to="/naming" class="link-simple">Naming conventions</nuxt-link>
           </li>
         </ul>
       </div>
-      <menu-directory :directory="fileList" class="container" />
+      <menu-container class="container" />
     </div>
     <div class="content">
       <slot />
@@ -21,22 +21,17 @@
 <script>
 
 export default {
-  setup() {
-    return { config: useRuntimeConfig() }
-  },
-  data() {
-    return {
-      fileList: this.config.fileList
-    };
-  }
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+
 .main-container {
   display: grid;
   grid-template-columns: 20em auto;
 }
+
 .menu-container {
   position: sticky;
   top: 0;
@@ -44,6 +39,7 @@ export default {
   max-height: 100vh;
   overflow-y: auto;
 }
+
 .content {
   max-width: 50em;
   width: 100%;
@@ -51,7 +47,3 @@ export default {
   margin: 0 auto;
 }
 </style>
-
-<style src="highlight.js/styles/github.css">
-</style>
-<style lang="scss" src="~/assets/css/index.scss"></style>

@@ -1,26 +1,22 @@
 {
-  "name": "css-system-docs",
-  "version": "1.0.0",
-  "description": "Documentation for (S)CSS scaffolding for new projects",
-  "author": "Michal Sadowski",
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi generate",
-    "start": "nuxi preview"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "fs-extra": "^10.1.0",
+    "highlight.js": "^11.5.1",
+    "nuxt": "^3.0.0-rc.3",
+    "sass": "^1.51.0",
+    "sass-loader": "^10.2.1"
   },
   "dependencies": {
-    "@thisisdeploy/scaffold-css": "latest",
-    "axios": "^0.25.0",
-    "fs-extra": "^10.0.0",
-    "highlight.js": "^11.4.0",
-    "markdown-it": "^12.3.2",
-    "node-watch": "^0.7.3",
-    "nunjucks": "^3.2.3",
-    "nuxt3": "^3.0.0-27405623.a9ba1ca",
-    "raw-loader": "^4.0.2",
-    "recursive-rename": "^4.0.0",
-    "sass": "^1.49.7",
-    "sass-loader": "^12.4.0"
+    "@thisisdeploy/scaffold-css": "^1.7.1",
+    "markdown-it": "^13.0.1",
+    "nunjucks": "^3.2.3"
   }
 }

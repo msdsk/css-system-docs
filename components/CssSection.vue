@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-html="text" class="comment"></div>
-    <showcase v-if="code" :code="code" />
+    <showcase-html v-if="code" :code="code" />
     <pre class="margin-top margin-bottom"><code v-html="highlightCss(css)"></code></pre>
   </div>
 </template>
@@ -23,7 +23,7 @@ function stripWhitespace(string) {
 
 export default {
   props: {
-    section: { type: String },
+    section: { type: String, required: true },
   },
   data() {
     return {
@@ -67,7 +67,7 @@ export default {
 
 <style lang="scss">
 .comment {
-  & > :not(:first-child) {
+  &> :not(:first-child) {
     margin-top: 1em;
   }
 }

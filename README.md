@@ -1,28 +1,42 @@
-# css-system-docs
+# Nuxt 3 Minimal Starter
 
-> Documentation for (S)CSS scaffolding for new projects
+Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
-## Build Setup
+## Setup
 
-``` bash
-# install dependencies
-$ npm run install
+Make sure to install the dependencies:
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+```bash
+# yarn
+yarn install
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# npm
+npm install
 
-# generate static project
-$ npm run generate
+# pnpm
+pnpm install --shamefully-hoist
 ```
 
-For easier local development that allows usage of local `.scss` files instead of an npm module, create `local_override.js` file at the root of the project and specify in it local path as such:
+## Development Server
 
-```js
-module.exports = {
-  cssModule: '../relative/path/to/css-system'
-}
+Start the development server on http://localhost:3000
+
+```bash
+npm run dev
 ```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
