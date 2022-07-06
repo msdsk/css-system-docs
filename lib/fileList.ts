@@ -13,6 +13,4 @@ const readFolder = (folder: string) => {
   return fileList
 }
 
-const fileList = readFolder("./node_modules/@thisisdeploy/scaffold-css")
-
-export default fileList
+export default () => readFolder("./public/css")

@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@thisisdeploy/scaffold-css": "^1.7.1",
+    "chokidar": "^3.5.3",
+    "klaw-sync": "^6.0.0",
     "markdown-it": "^13.0.1",
     "nunjucks": "^3.2.3"
   }

@@ -8,6 +8,7 @@
     "type": "node",
     "request": "launch",
     "cwd": "${workspaceFolder}",
+    "outputCapture": "std",
     "runtimeExecutable": "npm",
     "runtimeArgs": ["run", "dev"]
   }]

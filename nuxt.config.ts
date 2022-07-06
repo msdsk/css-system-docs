@@ -1,8 +1,11 @@
 import { defineNuxtConfig } from 'nuxt'
-import fileList from './lib/fileList'
 import copyCss from './lib/copyCss'
+import cssInputFolder from './lib/cssInputFolder'
+import FileList from './lib/fileList'
 
-copyCss()
+
+copyCss(cssInputFolder)
+const fileList = FileList()
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -17,7 +20,7 @@ export default defineNuxtConfig({
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap&subset=latin-ext' }
     ]
   },
-  css: ["@thisisdeploy/scaffold-css", "highlight.js/styles/github.css"],
+  css: ["@/assets/css/index.scss", "@thisisdeploy/scaffold-css", "highlight.js/styles/github.css"],
   runtimeConfig: {
     public: {
       FILE_LIST: fileList
