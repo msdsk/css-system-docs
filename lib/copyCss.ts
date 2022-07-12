@@ -1,23 +1,32 @@
 import fs from 'fs-extra'
 import chokidar from 'chokidar'
+import klawSync from 'klaw-sync'
+import path from 'path'
 
-const targetFolder = "./public/css"
+const targetFolder = "/css"
+let inputFolder = ""
 
-function copyCss(input: string, target: string = targetFolder) {
-  console.info(`Copying ${input}`)
-  fs.removeSync(target)
-  fs.copySync(input, target)
+function copyCss(input: string) {
+  const relativeInput = path.relative(__dirname, input)
+  const target = path.join(__dirname, relativeInput.replace(inputFolder, targetFolder))
+  return fs.copySync(input, target)
 }
 
-function watchCss(cssPath: string) {
+function watchCss(input: string) {
   console.info("Watching css files")
-  copyCss(cssPath)
-  chokidar.watch(`${cssPath}/**/*.scss`, { ignoreInitial: true })
-    .on("all", (_operation, filePath) => copyCss(filePath, filePath.replace(cssPath, targetFolder)))
-  debugger
+  chokidar.watch(`${input}/**/*.scss`, { ignoreInitial: true })
+    .on("all", (_operation, filePath) => copyCss(filePath))
 }
 
-export default (inputFolder: cssInputFolder) => {
+function initialCopy() {
+  return klawSync(inputFolder, { nodir: true })
+    .filter(file => file.path.endsWith(".scss"))
+    .forEach(file => copyCss(file.path))
+}
+
+export default (input: cssInputFolder) => {
   fs.removeSync(targetFolder)
-  inputFolder.local ? watchCss(inputFolder.path) : copyCss(inputFolder.path)
+  inputFolder = input.path
+  initialCopy()
+  input.local && watchCss(input.path)
 }

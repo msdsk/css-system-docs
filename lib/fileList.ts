@@ -13,4 +13,4 @@ const readFolder = (folder: string) => {
   return fileList
 }
 
-export default () => readFolder("./public/css")
+export default () => readFolder("./css")
